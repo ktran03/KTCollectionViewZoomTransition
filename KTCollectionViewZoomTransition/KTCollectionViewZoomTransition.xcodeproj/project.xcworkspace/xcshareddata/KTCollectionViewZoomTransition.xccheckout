@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4CDE5F7F-3BC2-408B-A123-258C02F6B6B3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>KTCollectionViewZoomTransition</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2ED328CA-6372-4D63-AF0C-7F6E5B053A3A</key>
+		<string>https://github.com/ktran03/KTCollectionViewZoomTransition.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>KTCollectionViewZoomTransition/KTCollectionViewZoomTransition.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2ED328CA-6372-4D63-AF0C-7F6E5B053A3A</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ktran03/KTCollectionViewZoomTransition.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2ED328CA-6372-4D63-AF0C-7F6E5B053A3A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2ED328CA-6372-4D63-AF0C-7F6E5B053A3A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>KTCollectionViewZoomTransition</string>
+		</dict>
+	</array>
+</dict>
+</plist>
