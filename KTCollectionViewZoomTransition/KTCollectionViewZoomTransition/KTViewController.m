@@ -7,6 +7,7 @@
 //
 
 #import "KTViewController.h"
+#import "KTCollectionViewCell.h"
 
 @interface KTViewController ()
 
@@ -14,16 +15,34 @@
 
 @implementation KTViewController
 
+/**
+ *  VC lifecycle methods
+ */
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerClass:[KTCollectionViewCell class] forCellWithReuseIdentifier:@"basic cell"];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UICollectionview methods
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 2;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    KTCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"basic cell" forIndexPath:indexPath];
+    return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 @end

@@ -21,6 +21,7 @@
 		CF1E70BF19059F9E007F7426 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1E70A119059F9E007F7426 /* UIKit.framework */; };
 		CF1E70C719059F9E007F7426 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF1E70C519059F9E007F7426 /* InfoPlist.strings */; };
 		CF1E70C919059F9E007F7426 /* KTCollectionViewZoomTransitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70C819059F9E007F7426 /* KTCollectionViewZoomTransitionTests.m */; };
+		CF1E70D41905A3C9007F7426 /* KTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		CF1E70C419059F9E007F7426 /* KTCollectionViewZoomTransitionTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KTCollectionViewZoomTransitionTests-Info.plist"; sourceTree = "<group>"; };
 		CF1E70C619059F9E007F7426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CF1E70C819059F9E007F7426 /* KTCollectionViewZoomTransitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTCollectionViewZoomTransitionTests.m; sourceTree = "<group>"; };
+		CF1E70D21905A3C9007F7426 /* KTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCollectionViewCell.h; sourceTree = "<group>"; };
+		CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				CF1E70B319059F9E007F7426 /* KTViewController.m */,
 				CF1E70B519059F9E007F7426 /* Images.xcassets */,
 				CF1E70A419059F9E007F7426 /* Supporting Files */,
+				CF1E70D21905A3C9007F7426 /* KTCollectionViewCell.h */,
+				CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */,
 			);
 			path = KTCollectionViewZoomTransition;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 				CF1E70B419059F9E007F7426 /* KTViewController.m in Sources */,
 				CF1E70AA19059F9E007F7426 /* main.m in Sources */,
 				CF1E70AE19059F9E007F7426 /* KTAppDelegate.m in Sources */,
+				CF1E70D41905A3C9007F7426 /* KTCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

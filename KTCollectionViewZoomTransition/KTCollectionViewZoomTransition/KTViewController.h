@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KTViewController : UIViewController
+@interface KTViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
