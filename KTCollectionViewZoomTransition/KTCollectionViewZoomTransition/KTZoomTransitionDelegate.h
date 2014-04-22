@@ -10,5 +10,8 @@
 
 @interface KTZoomTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
+@property (strong, nonatomic) UICollectionViewCell *cell;
+
+-(id)initWithCollectionViewCell:(UICollectionViewCell*)cell;
 
 @end

@@ -10,6 +10,11 @@
 
 @interface KTZoomAnimatedTransitioning : NSObject <UIViewControllerAnimatedTransitioning>
 
+@property (strong, nonatomic) UICollectionViewCell *cell;
 @property (nonatomic) BOOL reverse;
 
+
+-(id)initWithCollectionViewCell:(UICollectionViewCell*)cell;
+
+    
 @end

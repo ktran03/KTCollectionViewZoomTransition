@@ -10,6 +10,14 @@
 
 @implementation KTZoomAnimatedTransitioning
 
+-(id)initWithCollectionViewCell:(UICollectionViewCell*)cell{
+    self = [super init];
+    if (self) {
+        _cell = cell;
+    }
+    return self;
+}
+
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];

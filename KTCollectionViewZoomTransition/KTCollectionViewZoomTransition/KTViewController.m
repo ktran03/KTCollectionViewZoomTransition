@@ -45,7 +45,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{    
     KTSecondViewController *vc = (KTSecondViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"second vc"];
     
-    id <UIViewControllerTransitioningDelegate> delegate = [[KTZoomTransitionDelegate alloc] init];
+    id <UIViewControllerTransitioningDelegate> delegate = [[KTZoomTransitionDelegate alloc] initWithCollectionViewCell:[collectionView cellForItemAtIndexPath:indexPath]];
     vc.transitioningDelegate = delegate;
     [self presentViewController:vc animated:YES completion:nil];
 }

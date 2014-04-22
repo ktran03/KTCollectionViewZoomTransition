@@ -10,4 +10,6 @@
 
 @interface KTSecondViewController : UIViewController
 
+- (IBAction)back:(id)sender;
+
 @end
