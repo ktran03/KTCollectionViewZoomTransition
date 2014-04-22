@@ -8,6 +8,8 @@
 
 #import "KTViewController.h"
 #import "KTCollectionViewCell.h"
+#import "KTSecondViewController.h"
+#import "KTZoomTransitionDelegate.h"
 
 @interface KTViewController ()
 
@@ -21,8 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
     [self.collectionView registerClass:[KTCollectionViewCell class] forCellWithReuseIdentifier:@"basic cell"];
 }
 
@@ -34,7 +34,7 @@
 #pragma mark - UICollectionview methods
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 2;
+    return 5;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -42,7 +42,11 @@
     return cell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{    
+    KTSecondViewController *vc = (KTSecondViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"second vc"];
     
+    id <UIViewControllerTransitioningDelegate> delegate = [[KTZoomTransitionDelegate alloc] init];
+    vc.transitioningDelegate = delegate;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 @end

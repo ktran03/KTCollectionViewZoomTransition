@@ -22,6 +22,9 @@
 		CF1E70C719059F9E007F7426 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CF1E70C519059F9E007F7426 /* InfoPlist.strings */; };
 		CF1E70C919059F9E007F7426 /* KTCollectionViewZoomTransitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70C819059F9E007F7426 /* KTCollectionViewZoomTransitionTests.m */; };
 		CF1E70D41905A3C9007F7426 /* KTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */; };
+		CF1E70D71905F276007F7426 /* KTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70D61905F276007F7426 /* KTSecondViewController.m */; };
+		CF1E70DF1905F665007F7426 /* KTZoomTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70DE1905F665007F7426 /* KTZoomTransitionDelegate.m */; };
+		CF1E70E21905F71D007F7426 /* KTZoomAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = CF1E70E11905F71D007F7426 /* KTZoomAnimatedTransitioning.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,12 @@
 		CF1E70C819059F9E007F7426 /* KTCollectionViewZoomTransitionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTCollectionViewZoomTransitionTests.m; sourceTree = "<group>"; };
 		CF1E70D21905A3C9007F7426 /* KTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTCollectionViewCell.h; sourceTree = "<group>"; };
 		CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTCollectionViewCell.m; sourceTree = "<group>"; };
+		CF1E70D51905F276007F7426 /* KTSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTSecondViewController.h; sourceTree = "<group>"; };
+		CF1E70D61905F276007F7426 /* KTSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTSecondViewController.m; sourceTree = "<group>"; };
+		CF1E70DD1905F665007F7426 /* KTZoomTransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTZoomTransitionDelegate.h; sourceTree = "<group>"; };
+		CF1E70DE1905F665007F7426 /* KTZoomTransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTZoomTransitionDelegate.m; sourceTree = "<group>"; };
+		CF1E70E01905F71D007F7426 /* KTZoomAnimatedTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTZoomAnimatedTransitioning.h; sourceTree = "<group>"; };
+		CF1E70E11905F71D007F7426 /* KTZoomAnimatedTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTZoomAnimatedTransitioning.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,12 +127,10 @@
 				CF1E70AC19059F9E007F7426 /* KTAppDelegate.h */,
 				CF1E70AD19059F9E007F7426 /* KTAppDelegate.m */,
 				CF1E70AF19059F9E007F7426 /* Main.storyboard */,
-				CF1E70B219059F9E007F7426 /* KTViewController.h */,
-				CF1E70B319059F9E007F7426 /* KTViewController.m */,
-				CF1E70B519059F9E007F7426 /* Images.xcassets */,
+				CF1E70DA1905F2F0007F7426 /* Views */,
+				CF1E70D91905F2E9007F7426 /* Controllers */,
+				CF1E70D81905F2E0007F7426 /* Transition */,
 				CF1E70A419059F9E007F7426 /* Supporting Files */,
-				CF1E70D21905A3C9007F7426 /* KTCollectionViewCell.h */,
-				CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */,
 			);
 			path = KTCollectionViewZoomTransition;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 		CF1E70A419059F9E007F7426 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CF1E70B519059F9E007F7426 /* Images.xcassets */,
 				CF1E70A519059F9E007F7426 /* KTCollectionViewZoomTransition-Info.plist */,
 				CF1E70A619059F9E007F7426 /* InfoPlist.strings */,
 				CF1E70A919059F9E007F7426 /* main.m */,
@@ -155,6 +163,45 @@
 				CF1E70C519059F9E007F7426 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CF1E70D81905F2E0007F7426 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				CF1E70DD1905F665007F7426 /* KTZoomTransitionDelegate.h */,
+				CF1E70DE1905F665007F7426 /* KTZoomTransitionDelegate.m */,
+				CF1E70E01905F71D007F7426 /* KTZoomAnimatedTransitioning.h */,
+				CF1E70E11905F71D007F7426 /* KTZoomAnimatedTransitioning.m */,
+			);
+			name = Transition;
+			sourceTree = "<group>";
+		};
+		CF1E70D91905F2E9007F7426 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CF1E70B219059F9E007F7426 /* KTViewController.h */,
+				CF1E70B319059F9E007F7426 /* KTViewController.m */,
+				CF1E70D51905F276007F7426 /* KTSecondViewController.h */,
+				CF1E70D61905F276007F7426 /* KTSecondViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		CF1E70DA1905F2F0007F7426 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF1E70DB1905F2FC007F7426 /* Cells */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		CF1E70DB1905F2FC007F7426 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CF1E70D21905A3C9007F7426 /* KTCollectionViewCell.h */,
+				CF1E70D31905A3C9007F7426 /* KTCollectionViewCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +305,10 @@
 				CF1E70B419059F9E007F7426 /* KTViewController.m in Sources */,
 				CF1E70AA19059F9E007F7426 /* main.m in Sources */,
 				CF1E70AE19059F9E007F7426 /* KTAppDelegate.m in Sources */,
+				CF1E70DF1905F665007F7426 /* KTZoomTransitionDelegate.m in Sources */,
 				CF1E70D41905A3C9007F7426 /* KTCollectionViewCell.m in Sources */,
+				CF1E70D71905F276007F7426 /* KTSecondViewController.m in Sources */,
+				CF1E70E21905F71D007F7426 /* KTZoomAnimatedTransitioning.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
