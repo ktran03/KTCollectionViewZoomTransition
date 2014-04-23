@@ -1,5 +1,7 @@
 ## KTCollectionViewZoomTransition
 
+
+
 <p align=“left” >
   <img src="http://i.imgur.com/tJ0GjMl.gif" alt=“KTCustomSlider” title=“KT”KTCollectionViewZoomTransition>
 </p>
@@ -25,12 +27,14 @@ Custom transition mimicking Apple’s native calendar and photos app. Intended t
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     CGRect cellFrame = [collectionView convertRect:cell.frame toView:self.view];
 
+    //create desired view controller for next screen
+    UIViewController *vc = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"second vc"];
+
     //init the custom transition with the cell frame
     self.transitioningDelegate = [[KTZoomTransitionDelegate alloc] initWithRect:cellFrame];
     vc.transitioningDelegate = self.transitioningDelegate;
 
-    //present your desired view controller
-    UIViewController *vc = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"second vc"];
+    //present vc
     [self presentViewController:vc animated:YES completion:nil];
 }
 
