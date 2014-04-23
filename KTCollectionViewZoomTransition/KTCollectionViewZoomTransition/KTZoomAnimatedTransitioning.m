@@ -25,8 +25,8 @@
     self = [super init];
     if (self) {
         _controlRectangle = controlRectangle;
-        forwardTime = 0.98f;
-        reverseTime = 0.6f;
+        forwardTime = 0.75f;
+        reverseTime = 0.45f;
         delay = 0.0f;
         springDamping = 0.7f;
         reverseSpringDamping = 0.9f;
@@ -48,9 +48,8 @@
     CGFloat sy = container.frame.size.height / self.controlRectangle.size.height;
     transform = CGAffineTransformMakeScale(sx, sy);
     
-    CGPoint centerControlRect = CGPointMake(CGRectGetMidX(self.controlRectangle), CGRectGetMidY(self.controlRectangle));
-    CGFloat tx = container.center.x - centerControlRect.x;
-    CGFloat ty = container.center.y - centerControlRect.y;
+    CGFloat tx = container.center.x - CGRectGetMidX(self.controlRectangle);
+    CGFloat ty = container.center.y - CGRectGetMidY(self.controlRectangle);
     transform = CGAffineTransformTranslate(transform, tx, ty);
 }
 

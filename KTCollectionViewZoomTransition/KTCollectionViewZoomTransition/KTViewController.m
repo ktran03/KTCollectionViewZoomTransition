@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Personal Journal";
+    self.title = @"Example App";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor orangeColor]}];
     [self.collectionView registerClass:[KTCollectionViewCell class] forCellWithReuseIdentifier:@"basic cell"];
 }
