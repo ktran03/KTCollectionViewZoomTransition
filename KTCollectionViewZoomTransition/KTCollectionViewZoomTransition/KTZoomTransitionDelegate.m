@@ -11,17 +11,17 @@
 
 @implementation KTZoomTransitionDelegate
 
--(id)initWithCollectionViewCell:(UICollectionViewCell*)cell{
+-(id)initWithRect:(CGRect)rect{
     self = [super init];
     if (self) {
-        _cell = cell;
+        _aRect = rect;
     }
     return self;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
-    KTZoomAnimatedTransitioning *transitioning = [[KTZoomAnimatedTransitioning alloc] initWithCollectionViewCell:self.cell];
+    KTZoomAnimatedTransitioning *transitioning = [[KTZoomAnimatedTransitioning alloc] initWithRect:_aRect];
     return transitioning;
 }
 

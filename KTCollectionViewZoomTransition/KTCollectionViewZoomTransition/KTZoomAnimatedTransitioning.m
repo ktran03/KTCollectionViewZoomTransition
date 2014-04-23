@@ -10,10 +10,10 @@
 
 @implementation KTZoomAnimatedTransitioning
 
--(id)initWithCollectionViewCell:(UICollectionViewCell*)cell{
+-(id)initWithRect:(CGRect)rect{
     self = [super init];
     if (self) {
-        _cell = cell;
+        _aRect = rect;
     }
     return self;
 }
@@ -23,12 +23,23 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *container = [transitionContext containerView];
-    
+//
+//
+//    [container addSubview:fromViewController.view];
+//    [container insertSubview:toViewController.view aboveSubview:fromViewController.view];
+//    
+
     if (self.reverse) {
         [container insertSubview:toViewController.view belowSubview:fromViewController.view];
     }
     else {
-        toViewController.view.transform = CGAffineTransformMakeRotation(M_2_PI*2);
+        
+//        CGAffineTransform transform = toViewController.view.transform;
+//        toViewController.view.transform = CGAffineTransformScale(transform, 0.5f, 0.5f);
+        
+        
+        [toViewController.view setFrame:CGRectMake(self.aRect.origin.x, self.aRect.origin.y, self.aRect.size.width, self.aRect.size.height)];
+
         [container addSubview:toViewController.view];
     }
     
@@ -37,7 +48,7 @@
             fromViewController.view.transform = CGAffineTransformMakeScale(0, 0);
         }
         else {
-            toViewController.view.transform = CGAffineTransformIdentity;
+            toViewController.view.transform = CGAffineTransformMakeScale(1, 1);
         }
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:finished];
