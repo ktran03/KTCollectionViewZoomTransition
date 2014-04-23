@@ -10,11 +10,11 @@
 
 @interface KTZoomAnimatedTransitioning : NSObject <UIViewControllerAnimatedTransitioning>
 
-@property (assign) CGRect aRect;
+@property (assign) CGRect controlRectangle;
 @property (nonatomic) BOOL reverse;
 
 
--(id)initWithRect:(CGRect)rect;
+-(id)initWithRect:(CGRect)controlRectangle;
 
     
 @end
