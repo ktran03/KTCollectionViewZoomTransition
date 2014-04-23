@@ -50,7 +50,7 @@
     transform = CGAffineTransformTranslate(transform, tx, ty);
     
     
-    [UIView animateWithDuration:.7 delay:0.0 usingSpringWithDamping:0.7f initialSpringVelocity:1.0f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView animateWithDuration:.7 delay:0.0 usingSpringWithDamping:0.7f initialSpringVelocity:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         if (self.reverse) {
             fromViewController.view.transform = CGAffineTransformMakeScale(0, 0);
         }

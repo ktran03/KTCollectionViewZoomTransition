@@ -12,6 +12,7 @@
 #import "KTZoomTransitionDelegate.h"
 
 @interface KTViewController ()
+@property (nonatomic, strong) KTZoomTransitionDelegate *transitioningDelegate;
 
 @end
 
@@ -47,9 +48,8 @@
     
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     CGRect cellFrame = [collectionView convertRect:cell.frame toView:self.view];
-
-    id <UIViewControllerTransitioningDelegate> delegate = [[KTZoomTransitionDelegate alloc] initWithRect:cellFrame];
-    vc.transitioningDelegate = delegate;
+    self.transitioningDelegate = [[KTZoomTransitionDelegate alloc] initWithRect:cellFrame];
+    vc.transitioningDelegate = self.transitioningDelegate;
     [self presentViewController:vc animated:YES completion:nil];
 }
 @end

@@ -7,12 +7,18 @@
 //
 
 #import "KTAppDelegate.h"
+#import "KTZoomTransitionDelegate.h"
+
+@interface KTAppDelegate ()
+@property (nonatomic, strong) KTZoomTransitionDelegate *transitioningDelegate;
+@end
 
 @implementation KTAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.transitioningDelegate = [KTZoomTransitionDelegate new];
+    self.window.rootViewController.transitioningDelegate = self.transitioningDelegate;
     return YES;
 }
 							
