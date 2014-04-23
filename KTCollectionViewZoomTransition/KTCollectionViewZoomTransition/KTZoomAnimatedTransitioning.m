@@ -9,6 +9,12 @@
 #import "KTZoomAnimatedTransitioning.h"
 
 @interface KTZoomAnimatedTransitioning (){
+    NSTimeInterval forwardTime;
+    NSTimeInterval reverseTime;
+    CGFloat delay;
+    CGFloat springDamping;
+    CGFloat reverseSpringDamping;
+    CGFloat springVelocity;
     CGAffineTransform transform;
 }
 @end
@@ -19,6 +25,12 @@
     self = [super init];
     if (self) {
         _controlRectangle = controlRectangle;
+        forwardTime = 0.98f;
+        reverseTime = 0.6f;
+        delay = 0.0f;
+        springDamping = 0.7f;
+        reverseSpringDamping = 0.9f;
+        springVelocity = 0.5f;
     }
     return self;
 }
@@ -54,7 +66,7 @@
     [combinedView insertSubview:snapshotView aboveSubview:fromViewController.view];
     [container addSubview:combinedView];
     
-    [UIView animateWithDuration:.6 delay:0.0 usingSpringWithDamping:0.7f initialSpringVelocity:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView animateWithDuration:forwardTime delay:delay usingSpringWithDamping:springDamping initialSpringVelocity:springVelocity options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         combinedView.transform = transform;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:finished];
@@ -71,7 +83,7 @@
     snapshotView.transform = transform;
     [container addSubview:snapshotView];
     
-    [UIView animateWithDuration:.42 delay:0.0 usingSpringWithDamping:0.9f initialSpringVelocity:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView animateWithDuration:reverseTime delay:delay usingSpringWithDamping:reverseSpringDamping initialSpringVelocity:springVelocity options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [snapshotView setCenter:[container center]];
         [snapshotView setFrame:[container frame]];
     } completion:^(BOOL finished) {
@@ -82,9 +94,9 @@
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     if (self.reverse) {
-        return .42f;
+        return reverseTime;
     }
-    return 0.6f;
+    return forwardTime;
 }
 
 @end
