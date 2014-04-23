@@ -10,7 +10,7 @@
 
 @interface KTZoomTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
-@property (assign) CGRect aRect;
+@property (nonatomic, assign) CGRect aRect;
 
 -(id)initWithRect:(CGRect)rect;
 

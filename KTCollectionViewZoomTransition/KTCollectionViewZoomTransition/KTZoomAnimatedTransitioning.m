@@ -18,37 +18,30 @@
     return self;
 }
 
+
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *container = [transitionContext containerView];
-//
-//
-//    [container addSubview:fromViewController.view];
-//    [container insertSubview:toViewController.view aboveSubview:fromViewController.view];
-//    
+
 
     if (self.reverse) {
         [container insertSubview:toViewController.view belowSubview:fromViewController.view];
     }
     else {
-        
-//        CGAffineTransform transform = toViewController.view.transform;
-//        toViewController.view.transform = CGAffineTransformScale(transform, 0.5f, 0.5f);
-        
-        
-        [toViewController.view setFrame:CGRectMake(self.aRect.origin.x, self.aRect.origin.y, self.aRect.size.width, self.aRect.size.height)];
-
-        [container addSubview:toViewController.view];
+        [container addSubview:fromViewController.view];
     }
     
-    [UIView animateKeyframesWithDuration:0.5f delay:0 options:0 animations:^{
+    [UIView animateKeyframesWithDuration:5.0f delay:0 options:0 animations:^{
         if (self.reverse) {
             fromViewController.view.transform = CGAffineTransformMakeScale(0, 0);
         }
         else {
-            toViewController.view.transform = CGAffineTransformMakeScale(1, 1);
+            CGFloat widthScale = fromViewController.view.frame.size.width / self.aRect.size.width;
+            CGFloat heightScale = fromViewController.view.frame.size.height / self.aRect.size.height;
+
+            fromViewController.view.transform = CGAffineTransformMakeScale(widthScale, heightScale);
         }
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:finished];
