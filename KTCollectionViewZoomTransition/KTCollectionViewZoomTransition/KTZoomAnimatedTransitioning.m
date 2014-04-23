@@ -33,15 +33,28 @@
         [container addSubview:fromViewController.view];
     }
     
-    [UIView animateKeyframesWithDuration:5.0f delay:0 options:0 animations:^{
+    
+    CGFloat widthScale = fromViewController.view.frame.size.width / self.aRect.size.width;
+    CGFloat heightScale = fromViewController.view.frame.size.height / self.aRect.size.height;
+    
+    CGAffineTransform transform = fromViewController.view.transform;
+    transform = CGAffineTransformMakeScale(widthScale, heightScale);
+    
+    CGPoint centerScreen = fromViewController.view.center;
+    CGPoint centerZoomedRect = CGPointMake(CGRectGetMidX(self.aRect), CGRectGetMidY(self.aRect));
+    CGFloat tx = centerScreen.x - centerZoomedRect.x;
+    CGFloat ty = centerScreen.y - centerZoomedRect.y;
+    transform = CGAffineTransformTranslate(transform, tx, ty);
+    
+    
+    [UIView animateKeyframesWithDuration:0.70f delay:0 options:UIViewKeyframeAnimationOptionCalculationModeCubic animations:^{
         if (self.reverse) {
             fromViewController.view.transform = CGAffineTransformMakeScale(0, 0);
         }
         else {
-            CGFloat widthScale = fromViewController.view.frame.size.width / self.aRect.size.width;
-            CGFloat heightScale = fromViewController.view.frame.size.height / self.aRect.size.height;
-
-            fromViewController.view.transform = CGAffineTransformMakeScale(widthScale, heightScale);
+            
+            fromViewController.view.transform = transform;
+            
         }
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:finished];
