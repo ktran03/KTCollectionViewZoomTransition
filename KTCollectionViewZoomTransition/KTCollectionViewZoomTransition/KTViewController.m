@@ -24,6 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Personal Journal";
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor orangeColor]}];
     [self.collectionView registerClass:[KTCollectionViewCell class] forCellWithReuseIdentifier:@"basic cell"];
 }
 
@@ -35,7 +37,7 @@
 #pragma mark - UICollectionview methods
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 50;
+    return 8;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -45,7 +47,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{    
     KTSecondViewController *vc = (KTSecondViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"second vc"];
-    
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     CGRect cellFrame = [collectionView convertRect:cell.frame toView:self.view];
     self.transitioningDelegate = [[KTZoomTransitionDelegate alloc] initWithRect:cellFrame];

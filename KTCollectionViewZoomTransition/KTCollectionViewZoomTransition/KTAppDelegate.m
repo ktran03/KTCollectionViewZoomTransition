@@ -9,6 +9,7 @@
 #import "KTAppDelegate.h"
 #import "KTZoomTransitionDelegate.h"
 
+
 @interface KTAppDelegate ()
 @property (nonatomic, strong) KTZoomTransitionDelegate *transitioningDelegate;
 @end
@@ -17,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+
+    
+    //[[UINavigationBar appearance] setBarTintColor:[UIColor orangeColor]];
     self.transitioningDelegate = [KTZoomTransitionDelegate new];
     self.window.rootViewController.transitioningDelegate = self.transitioningDelegate;
     return YES;

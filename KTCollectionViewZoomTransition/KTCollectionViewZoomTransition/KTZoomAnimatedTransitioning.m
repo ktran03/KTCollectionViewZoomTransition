@@ -9,8 +9,7 @@
 #import "KTZoomAnimatedTransitioning.h"
 
 @interface KTZoomAnimatedTransitioning (){
-    UIView *snapshotView;
-    UIView *combinedView;
+    CGAffineTransform transform;
 }
 @end
 
@@ -26,37 +25,21 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    [self configureTransformation:transitionContext];
     self.reverse ? [self executeDismissAnimation:transitionContext] : [self executePresentationAnimation:transitionContext];
 }
 
--(void)executeDismissAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
-    
-    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+-(void)configureTransformation:(id<UIViewControllerContextTransitioning>)transitionContext{
     UIView *container = [transitionContext containerView];
-    snapshotView = [toViewController.view snapshotViewAfterScreenUpdates:YES];
     
-    CGFloat widthScale = container.frame.size.width / self.controlRectangle.size.width;
-    CGFloat heightScale = container.frame.size.height / self.controlRectangle.size.height;
-    CGAffineTransform transform = CGAffineTransformMakeScale(widthScale, heightScale);
+    CGFloat sx = container.frame.size.width / self.controlRectangle.size.width;
+    CGFloat sy = container.frame.size.height / self.controlRectangle.size.height;
+    transform = CGAffineTransformMakeScale(sx, sy);
     
-    CGPoint centerScreen = container.center;
-    CGPoint centerZoomedRect = CGPointMake(CGRectGetMidX(self.controlRectangle), CGRectGetMidY(self.controlRectangle));
-    CGFloat tx = centerScreen.x - centerZoomedRect.x;
-    CGFloat ty = centerScreen.y - centerZoomedRect.y;
+    CGPoint centerControlRect = CGPointMake(CGRectGetMidX(self.controlRectangle), CGRectGetMidY(self.controlRectangle));
+    CGFloat tx = container.center.x - centerControlRect.x;
+    CGFloat ty = container.center.y - centerControlRect.y;
     transform = CGAffineTransformTranslate(transform, tx, ty);
-    
-    snapshotView.transform = transform;
-    [container addSubview:snapshotView];
-
-    
-    
-    [UIView animateWithDuration:.6 delay:0.0 usingSpringWithDamping:0.9f initialSpringVelocity:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        [snapshotView setCenter:[container center]];
-        [snapshotView setFrame:[container frame]];
-    } completion:^(BOOL finished) {
-        [transitionContext completeTransition:finished];
-    }];
 }
 
 -(void)executePresentationAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
@@ -65,41 +48,43 @@
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *container = [transitionContext containerView];
     
-    snapshotView = [toViewController.view snapshotViewAfterScreenUpdates:YES];
+    UIView *snapshotView = [toViewController.view snapshotViewAfterScreenUpdates:YES];
     [snapshotView setFrame:CGRectMake(self.controlRectangle.origin.x, self.controlRectangle.origin.y, self.controlRectangle.size.width, self.controlRectangle.size.height)];
-    combinedView = [fromViewController.view snapshotViewAfterScreenUpdates:NO];
+    UIView *combinedView = [fromViewController.view snapshotViewAfterScreenUpdates:NO];
     [combinedView insertSubview:snapshotView aboveSubview:fromViewController.view];
     [container addSubview:combinedView];
     
-    CGFloat widthScale = container.frame.size.width / self.controlRectangle.size.width;
-    CGFloat heightScale = container.frame.size.height / self.controlRectangle.size.height;
-    
-    CGAffineTransform transform = CGAffineTransformMakeScale(widthScale, heightScale);
-    
-    CGPoint centerScreen = container.center;
-    CGPoint centerZoomedRect = CGPointMake(CGRectGetMidX(self.controlRectangle), CGRectGetMidY(self.controlRectangle));
-    CGFloat tx = centerScreen.x - centerZoomedRect.x;
-    CGFloat ty = centerScreen.y - centerZoomedRect.y;
-    transform = CGAffineTransformTranslate(transform, tx, ty);
-    
-    
     [UIView animateWithDuration:.6 delay:0.0 usingSpringWithDamping:0.7f initialSpringVelocity:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-        if (self.reverse) {
-            combinedView.transform = CGAffineTransformMakeScale(0, 0);
-        }
-        else {
-            combinedView.transform = transform;
-        }
+        combinedView.transform = transform;
     } completion:^(BOOL finished) {
-        [combinedView removeFromSuperview];
         [transitionContext completeTransition:finished];
     }];
     
 }
 
+-(void)executeDismissAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
+    
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView *container = [transitionContext containerView];
+    UIView *snapshotView = [toViewController.view snapshotViewAfterScreenUpdates:YES];
+    
+    snapshotView.transform = transform;
+    [container addSubview:snapshotView];
+    
+    [UIView animateWithDuration:.42 delay:0.0 usingSpringWithDamping:0.9f initialSpringVelocity:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [snapshotView setCenter:[container center]];
+        [snapshotView setFrame:[container frame]];
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:finished];
+    }];
+}
+
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.15f;
+    if (self.reverse) {
+        return .42f;
+    }
+    return 0.6f;
 }
 
 @end
