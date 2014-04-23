@@ -27,7 +27,7 @@
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
-    KTZoomAnimatedTransitioning *transitioning = [KTZoomAnimatedTransitioning new];
+    KTZoomAnimatedTransitioning *transitioning = [[KTZoomAnimatedTransitioning alloc] initWithRect:_controlRect];
     transitioning.reverse = YES;
     return transitioning;
 }
