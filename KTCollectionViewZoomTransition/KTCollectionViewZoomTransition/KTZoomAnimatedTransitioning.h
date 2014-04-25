@@ -10,10 +10,25 @@
 
 @interface KTZoomAnimatedTransitioning : NSObject <UIViewControllerAnimatedTransitioning>
 
+/**
+ *  The rectangle to be zoomed in on
+ */
 @property (assign) CGRect controlRectangle;
+
+/**
+ *  BOOL that signifies if in reverse transition mode
+ */
 @property (nonatomic) BOOL reverse;
 
 
+
+/**
+ *  Init method
+ *
+ *  @param controlRectangle : the rect to be zoomed in on
+ *
+ *  @return : self
+ */
 -(id)initWithRect:(CGRect)controlRectangle;
 
     

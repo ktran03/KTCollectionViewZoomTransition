@@ -10,8 +10,18 @@
 
 @interface KTZoomTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate>
 
+/**
+ *  the rect to be zoomed in (could be UICollectionViewCell or other view)
+ */
 @property (nonatomic, assign) CGRect controlRect;
 
+/**
+ *  Init method
+ *
+ *  @param controlRect : the rect to be zoomed in on
+ *
+ *  @return : self
+ */
 -(id)initWithRect:(CGRect)controlRect;
 
 @end
