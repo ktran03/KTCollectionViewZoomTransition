@@ -8,39 +8,51 @@
 
 #import "KTZoomAnimatedTransitioning.h"
 
+#define FORWARD_TIME 0.75f
+#define REVERSE_TIME 0.45f
+#define DELAY_TIME 0.0f
+#define SPRING_DAMPING 0.7f
+#define REVERSE_SPRING_DAMPING 0.9f
+#define SPRING_VELOCITY 0.5f
+
 @interface KTZoomAnimatedTransitioning (){
-    NSTimeInterval forwardTime;
-    NSTimeInterval reverseTime;
-    CGFloat delay;
-    CGFloat springDamping;
-    CGFloat reverseSpringDamping;
-    CGFloat springVelocity;
     CGAffineTransform transform;
 }
 @end
 
 @implementation KTZoomAnimatedTransitioning
 
+/**
+ *  Init method
+ *
+ *  @param controlRectangle the rectangle to be zoomed in on
+ *
+ *  @return self
+ */
 -(id)initWithRect:(CGRect)controlRectangle{
     self = [super init];
     if (self) {
         _controlRectangle = controlRectangle;
-        forwardTime = 0.75f;
-        reverseTime = 0.45f;
-        delay = 0.0f;
-        springDamping = 0.7f;
-        reverseSpringDamping = 0.9f;
-        springVelocity = 0.5f;
     }
     return self;
 }
 
+/**
+ *  Called when performing animation, determines forward or reverse
+ *
+ *  @param transitionContext : the transition context
+ */
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     [self configureTransformation:transitionContext];
     self.reverse ? [self executeDismissAnimation:transitionContext] : [self executePresentationAnimation:transitionContext];
 }
 
+/**
+ *  Performs calculation of transformation matrix
+ *
+ *  @param transitionContext : the transition context
+ */
 -(void)configureTransformation:(id<UIViewControllerContextTransitioning>)transitionContext{
     UIView *container = [transitionContext containerView];
     
@@ -53,6 +65,11 @@
     transform = CGAffineTransformTranslate(transform, tx, ty);
 }
 
+/**
+ *  Executes the presentation animation
+ *
+ *  @param transitionContext : the transition context
+ */
 -(void)executePresentationAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
     
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -65,7 +82,7 @@
     [combinedView insertSubview:snapshotView aboveSubview:fromViewController.view];
     [container addSubview:combinedView];
     
-    [UIView animateWithDuration:forwardTime delay:delay usingSpringWithDamping:springDamping initialSpringVelocity:springVelocity options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView animateWithDuration:FORWARD_TIME delay:DELAY_TIME usingSpringWithDamping:SPRING_DAMPING initialSpringVelocity:SPRING_VELOCITY options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         combinedView.transform = transform;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:finished];
@@ -73,6 +90,11 @@
     
 }
 
+/**
+ *  Executes the dismiss animation
+ *
+ *  @param transitionContext : the transition context
+ */
 -(void)executeDismissAnimation:(id<UIViewControllerContextTransitioning>)transitionContext{
     
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -82,7 +104,7 @@
     snapshotView.transform = transform;
     [container addSubview:snapshotView];
     
-    [UIView animateWithDuration:reverseTime delay:delay usingSpringWithDamping:reverseSpringDamping initialSpringVelocity:springVelocity options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+    [UIView animateWithDuration:REVERSE_TIME delay:DELAY_TIME usingSpringWithDamping:REVERSE_SPRING_DAMPING initialSpringVelocity:SPRING_VELOCITY options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
         [snapshotView setCenter:[container center]];
         [snapshotView setFrame:[container frame]];
     } completion:^(BOOL finished) {
@@ -90,12 +112,19 @@
     }];
 }
 
+/**
+ *  <#Description#>
+ *
+ *  @param transitionContext : the transition context
+ *
+ *  @return transition time
+ */
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     if (self.reverse) {
-        return reverseTime;
+        return REVERSE_TIME;
     }
-    return forwardTime;
+    return FORWARD_TIME;
 }
 
 @end

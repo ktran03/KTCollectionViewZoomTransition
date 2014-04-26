@@ -20,8 +20,6 @@
  */
 @property (nonatomic) BOOL reverse;
 
-
-
 /**
  *  Init method
  *
